@@ -54,6 +54,7 @@ watchEffect(() => {
   }
 })
 const autoSet = () => {
+  showDeterminant.value = false
   for (let i = 0; i < size.value; i++) {
     for (let j = 0; j < size.value; j++) {
       matrix.value[i][j] = Math.floor(Math.random() * (100 - -100 + 1)) + -100
