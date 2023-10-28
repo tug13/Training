@@ -1,0 +1,22 @@
+{
+  "products": [
+    {
+      "name": "manao akory",
+      "description": "fdfqdf",
+      "price": 302,
+      "quantity": 2000,
+      "total": 604000,
+      "date": "27/10/2023",
+      "id": 1
+    },
+    {
+      "name": "manao akory",
+      "description": "hfello",
+      "price": 20,
+      "quantity": 300,
+      "total": 6000,
+      "date": "27/10/2023",
+      "id": 2
+    }
+  ]
+}
