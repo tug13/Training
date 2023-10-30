@@ -4,13 +4,15 @@ import * as ProductApi from '@/api/product.api'
 import { useToast } from 'vue-toast-notification'
 import moment from 'moment'
 import { ref, defineProps, watchEffect } from 'vue'
+import { useI18n } from 'vue-i18n'
+import type { Message } from '@/i18n'
+const { t } = useI18n<{ message: Message }, 'en' | 'fr'>()
 const props = defineProps<{
   isModalOpen: boolean
   product: FormProduct
   title: string
   type: 'add' | 'edit'
 }>()
-
 const emit = defineEmits(['close', 'update'])
 const toast = useToast()
 
@@ -55,10 +57,10 @@ const onSubmit = async () => {
         <main>
           <form :class="$style.form" @submit.prevent="onSubmit">
             <div :class="$style.formRow">
-              <label for="product">Product Name</label>
+              <label for="product">{{ t('table.name') }}</label>
               <input
                 v-model="productForm.name"
-                placeholder="Product Name"
+                :placeholder="t('table.name')"
                 type="text"
                 name="product"
                 id="product"
@@ -68,12 +70,12 @@ const onSubmit = async () => {
               />
             </div>
             <div :class="$style.formRow">
-              <label for="description">Description</label>
+              <label for="description">{{ t('table.description') }}</label>
               <textarea
                 v-model="productForm.description"
                 type="text"
                 name="description"
-                placeholder="Description"
+                :placeholder="t('table.description')"
                 id="description"
                 class="w-100"
                 :class="$style.textarea"
@@ -81,10 +83,10 @@ const onSubmit = async () => {
               />
             </div>
             <div :class="$style.formRow">
-              <label for="price">Price</label>
+              <label for="price">{{ t('table.price') }}</label>
               <input
                 v-model="productForm.price"
-                placeholder="price"
+                :placeholder="t('table.price')"
                 type="number"
                 name="price"
                 id="price"
@@ -93,10 +95,10 @@ const onSubmit = async () => {
               />
             </div>
             <div :class="$style.formRow">
-              <label for="quantity">Quantity</label>
+              <label for="quantity">{{ t('table.quantity') }}</label>
               <input
                 v-model="productForm.quantity"
-                placeholder="quantity"
+                :placeholder="t('table.quantity')"
                 type="number"
                 name="quantity"
                 id="quantity"
@@ -105,8 +107,12 @@ const onSubmit = async () => {
               />
             </div>
             <div :class="$style.formActions">
-              <button @click.prevent="$emit('close')" class="btn">Close</button>
-              <button type="submit" class="btn btn-primary">Add</button>
+              <button @click.prevent="$emit('close')" class="btn">
+                {{ t('button.close') }}
+              </button>
+              <button type="submit" class="btn btn-primary">
+                {{ t('button.add') }}
+              </button>
             </div>
           </form>
         </main>

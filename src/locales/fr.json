@@ -1,0 +1,40 @@
+{
+  "product": {
+    "title": "Liste des produits"
+  },
+  "button": {
+    "add": "Ajouter",
+    "search": "Rechercher",
+    "close": "Fermer"
+  },
+  "menu": {
+    "home": "Accueil",
+    "product": "Produits",
+    "matrix": "Matrice"
+  },
+  "table": {
+    "name": "Nom",
+    "description": "Description",
+    "price": "Prix",
+    "quantity": "Quantité",
+    "date": "Date",
+    "total": "Total",
+    "action": "Actions"
+  },
+  "confirmButton": {
+    "yes": "Oui",
+    "no": "Non",
+    "title": "Ete-vous sûr de vouloir supprimer ce produit ?"
+  },
+  "modal": {
+    "add": "Ajouter Produit",
+    "edit": "Modifier Produit"
+  },
+  "matrix": {
+    "title": "Déterminant d'une matrice carrée",
+    "size": "Choisissez la taille de la matrice",
+    "set": "Remplir Auto",
+    "generate": "Générer",
+    "determinant": "Le déterminant est :"
+  }
+}

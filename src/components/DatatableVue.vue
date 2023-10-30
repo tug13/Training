@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { Product } from '@/models/Product'
-
+import { useI18n } from 'vue-i18n'
+import type { Message } from '@/i18n'
+const { t } = useI18n<{ message: Message }, 'en' | 'fr'>()
 defineProps<{
   data: Product[]
 }>()
@@ -11,13 +13,13 @@ defineEmits(['edit', 'delete'])
   <table class="table">
     <thead class="thead-dark">
       <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Description</th>
-        <th scope="col">Price</th>
-        <th scope="col">Quantity</th>
-        <th scope="col">Date</th>
-        <th scope="col">Total</th>
-        <th scope="col">Actions</th>
+        <th scope="col">{{ t('table.name') }}</th>
+        <th scope="col">{{ t('table.description') }}</th>
+        <th scope="col">{{ t('table.price') }}</th>
+        <th scope="col">{{ t('table.quantity') }}</th>
+        <th scope="col">{{ t('table.date') }}</th>
+        <th scope="col">{{ t('table.total') }}</th>
+        <th scope="col">{{ t('table.action') }}</th>
       </tr>
     </thead>
     <tbody>

@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { deleteProduct } from '@/api/product.api'
 import { useToast } from 'vue-toast-notification'
+import { useI18n } from 'vue-i18n'
+import type { Message } from '@/i18n'
+const { t } = useI18n<{ message: Message }, 'en' | 'fr'>()
 const props = defineProps<{
   isModalConfirmOpen: boolean
   idToDelete: number
@@ -29,10 +32,10 @@ const onDelete = async () => {
         <main>
           <div class="d-flex justify-content-end gap-10">
             <button @click.prevent="$emit('close')" class="btn btn-secondary">
-              No
+              {{ t('confirmButton.no') }}
             </button>
             <button @click.prevent="onDelete" class="btn btn-danger">
-              Yes
+              {{ t('confirmButton.yes') }}
             </button>
           </div>
         </main>

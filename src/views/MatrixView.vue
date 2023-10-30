@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue'
+import { useI18n } from 'vue-i18n'
+import type { Message } from '@/i18n'
+const { t } = useI18n<{ message: Message }, 'en' | 'fr'>()
 const matrix = ref<number[][]>([])
 const size = ref<number>(2)
 const determinant = ref<number>()
@@ -67,10 +70,10 @@ const onSubmit = () => {
 }
 </script>
 <template>
-  <h4>Determinant of a square matrix</h4>
+  <h4>{{ t('matrix.title') }}</h4>
   <div>
     <div class="d-flex gap-10">
-      <label for="size">Choose the size of the matrix</label>
+      <label for="size">{{ t('matrix.size') }}</label>
       <input v-model="size" class="input" type="number" id="size" />
     </div>
     <table>
@@ -88,16 +91,17 @@ const onSubmit = () => {
           </tr>
           <div v-if="size" class="d-flex justify-content-end gap-10">
             <button @click="autoSet" type="button" class="btn btn-secondary">
-              Auto set
+              {{ t('matrix.set') }}
             </button>
-            <button type="submit" class="btn btn-danger">Generate</button>
+            <button type="submit" class="btn btn-danger">
+              {{ t('matrix.generate') }}
+            </button>
           </div>
         </form>
         <div v-if="showDeterminant" class="mt-2">
           <label
-            >The determinant is:<span class="determinant">{{
-              determinant
-            }}</span></label
+            >{{ t('matrix.determinant')
+            }}<span class="determinant">{{ determinant }}</span></label
           >
         </div>
       </body>

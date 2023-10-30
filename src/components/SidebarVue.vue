@@ -1,3 +1,8 @@
+<script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+import type { Message } from '@/i18n'
+const { t } = useI18n<{ message: Message }, 'en' | 'fr'>()
+</script>
 <template>
   <div id="sidebar">
     <ul>
@@ -6,7 +11,7 @@
           <div class="contenticon">
             <i class="fa-solid fa-house icon"></i>
           </div>
-          <span> Home </span>
+          <span> {{ t('menu.home') }} </span>
         </router-link>
       </li>
       <li>
@@ -14,7 +19,7 @@
           <div class="contenticon">
             <i class="fa-solid fa-cart-shopping icon"></i>
           </div>
-          <span>Products</span>
+          <span>{{ t('menu.product') }}</span>
         </router-link>
       </li>
       <li>
@@ -22,7 +27,7 @@
           <div class="contenticon">
             <i class="fa-solid fa-calculator icon"></i>
           </div>
-          <span>Matrix </span>
+          <span>{{ t('menu.matrix') }} </span>
         </router-link>
       </li>
     </ul>

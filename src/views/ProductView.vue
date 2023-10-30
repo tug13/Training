@@ -4,8 +4,11 @@ import ProductModal from '@/components/ProductModal.vue'
 import ConfirmModal from '@/components/ConfirmModal.vue'
 import * as ProductApi from '@/api/product.api'
 import type { FormProduct, Product } from '@/models/Product'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watchEffect } from 'vue'
 import _ from 'lodash'
+import { useI18n } from 'vue-i18n'
+import type { Message } from '@/i18n'
+const { t } = useI18n<{ message: Message }, 'en' | 'fr'>()
 const filteredData = ref<Product[]>([])
 const searchInput = ref('')
 const data = ref<Product[]>([])
@@ -13,7 +16,8 @@ const isModalOpen = ref(false)
 const idToDelete = ref<number>(0)
 const isModalConfirmOpen = ref(false)
 const currentType = ref<'add' | 'edit'>('add')
-const title = ref<'Add Product' | 'Edit Product'>('Add Product')
+const title = ref<string>(t('modal.add'))
+const titleConfim = ref<string>(t('confirmButton.title'))
 const initialProduct: FormProduct = {
   name: '',
   description: '',
@@ -28,13 +32,13 @@ const getProducts = async () => {
 }
 
 const onEdit = (item: FormProduct) => {
-  title.value = 'Edit Product'
+  title.value = t('modal.edit')
   isModalOpen.value = true
   currentType.value = 'edit'
   currentProduct.value = item
 }
 const onAdd = () => {
-  title.value = 'Add Product'
+  title.value = t('modal.add')
   isModalOpen.value = true
   currentType.value = 'add'
   currentProduct.value = { ...initialProduct }
@@ -66,9 +70,12 @@ const onSearch = _.debounce(async () => {
 onMounted(async () => {
   await getProducts()
 })
+watchEffect(() => {
+  titleConfim.value = t('confirmButton.title')
+})
 </script>
 <template>
-  <h4>Products list</h4>
+  <h4>{{ t('product.title') }}</h4>
   <div class="content">
     <div class="d-flex buttonvue">
       <form class="form-inline d-flex gap-10">
@@ -76,7 +83,7 @@ onMounted(async () => {
           v-model="searchInput"
           class="form-control mr-sm-2"
           type="search"
-          placeholder="Search"
+          :placeholder="t('button.search')"
           aria-label="Search"
           @input="onSearch"
         />
@@ -85,10 +92,12 @@ onMounted(async () => {
           class="btn btn-outline-success my-2 my-sm-0"
           @click.prevent="onSearch"
         >
-          Search
+          {{ t('button.search') }}
         </button>
       </form>
-      <button @click="onAdd" type="button" class="btn btn-primary">Add</button>
+      <button @click="onAdd" type="button" class="btn btn-primary">
+        {{ t('button.add') }}
+      </button>
     </div>
     <datatable-vue
       :data="filteredData"
@@ -105,7 +114,7 @@ onMounted(async () => {
     />
     <confirm-modal
       :is-modal-confirm-open="isModalConfirmOpen"
-      :title="'Are you sure to delete this product ?'"
+      :title="titleConfim"
       :id-to-delete="idToDelete"
       @close="isModalConfirmOpen = false"
       @update="onUpdate"

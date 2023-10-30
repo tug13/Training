@@ -1,0 +1,40 @@
+{
+  "product": {
+    "title": "Product list"
+  },
+  "button": {
+    "add": "Add",
+    "search": "Search",
+    "close": "Close"
+  },
+  "menu": {
+    "home": "Home",
+    "product": "Products",
+    "matrix": "Matrix"
+  },
+  "table": {
+    "name": "Name",
+    "description": "Description",
+    "price": "Price",
+    "quantity": "Quantity",
+    "date": "Date",
+    "total": "Total",
+    "action": "Actions"
+  },
+  "confirmButton": {
+    "yes": "Yes",
+    "no": "No",
+    "title": "Are you sure to delete this product ?"
+  },
+  "modal": {
+    "add": "Add Product",
+    "edit": "Edit Product"
+  },
+  "matrix": {
+    "title": "Determinant of a square matrix",
+    "size": "Choose the size of the matrix",
+    "set": "Auto Set",
+    "generate": "Generate",
+    "determinant": "The determinant is :"
+  }
+}
